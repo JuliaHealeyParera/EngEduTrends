@@ -1,4 +1,4 @@
-# Educational attainment of young people in English towns
+# Educational Outcome of English Students
 
 The [dataset](https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/educationandchildcare/datasets/educationalattainmentofyoungpeopleinenglishtownsdata/200708201819/youngpeoplesattainmentintownsreferencetable1.xlsx) used in this project is from [The UK Office for National Statistics](https://www.ons.gov.uk/).
 It was sourced from TidyTuesday and has already been discussed in ["Why do children and young people in smaller towns do better academically than those in larger towns?"](https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25). This project aims to further explore the dataset and its resulting models.
