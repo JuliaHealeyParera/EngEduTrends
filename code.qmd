@@ -10,37 +10,17 @@ library(MASS)
 library(tidyverse)
 library(broom)
 library(glm2)
-library(dplyr)
 library(Stat2Data)
 library(pROC)
 library(yardstick)
-library(ggplot2)
 library(janitor)
 library(here)
 library(fs)
 library(withr)
 library(lmtest)
+library(readxl)
 
-#edu <- read.csv("data/english_education.csv")
-edu <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-23/english_education.csv')
-
-
-
-working_dir <- here::here("data")
-
-xls_path <- withr::local_tempfile(fileext = ".xlsx")
-download.file(
-  "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/educationandchildcare/datasets/educationalattainmentofyoungpeopleinenglishtownsdata/200708201819/youngpeoplesattainmentintownsreferencetable1.xlsx",
-  xls_path,
-  mode = "wb"
-)
-
-english_education <- readxl::read_xlsx(xls_path, sheet = "Data", na = "*") |> 
-  janitor::clean_names()
-
-readr::write_csv(
-  english_education,
-  fs::path(working_dir, "english_education.csv"))
+edu <- read.csv("data/english_education.csv")
 ```
 
 ```{r}
@@ -231,4 +211,26 @@ ggplot(english_education, aes(x = factor(rgn11nm_combined))) +
   geom_bar() +
   labs(x = "Region (rgn11nm_combined)", y = "Count", title = "Relative Distributions of New Regions")
   
+```
+
+```{r}
+
+working_dir <- here("data")
+
+xls_path <- local_tempfile(fileext = ".xlsx")
+
+#edu <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-23/english_education.csv')
+
+download.file(
+  "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/educationandchildcare/datasets/educationalattainmentofyoungpeopleinenglishtownsdata/200708201819/youngpeoplesattainmentintownsreferencetable1.xlsx",
+  xls_path,
+  mode = "wb"
+)
+
+english_education <- read_xlsx(xls_path, sheet = "Data", na = "*") |> 
+  clean_names()
+
+write_csv(
+  english_education,
+  path(working_dir, "english_education.csv"))
 ```
